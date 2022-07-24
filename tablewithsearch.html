@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <style>
+       td, th{
+        border: 0.5px solid black;
+                }
+                #btn{
+                    margin: 20px 20vw
+                }
+    </style>
+</head>
+<body>
+    <h1>Students Record</h1>
+
+    <form action="">
+  <input id="searchInput" type="text">
+    </form>
+     <br>
+
+    <table>
+        <thead>
+            <th>ROll no.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+        </thead>
+     <tbody id="tbody">
+ 
+    </tbody>
+
+    </table>
+
+    <div>
+        <button id="btn">  </button>
+    </div>
+    <!-- <div id="buttons" style="display: inline-block;">
+        <button>prev</button><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>Next</button>
+    </div> -->
+
+<script>
+const studentLists = [
+    {"id":1,"first_name":"Nikoletta","last_name":"Lippi","email":"nlippi0@vimeo.com","gender":"Female","ip_address":"28.233.192.233"},
+{"id":2,"first_name":"Davy","last_name":"Cromblehome","email":"dcromblehome1@hp.com","gender":"Male","ip_address":"11.68.113.232"},
+{"id":3,"first_name":"Leonerd","last_name":"Espley","email":"lespley2@baidu.com","gender":"Male","ip_address":"98.36.48.98"},
+{"id":4,"first_name":"Iris","last_name":"Figurski","email":"ifigurski3@china.com.cn","gender":"Female","ip_address":"43.165.16.226"},
+{"id":5,"first_name":"Haleigh","last_name":"Marryatt","email":"hmarryatt4@hp.com","gender":"Male","ip_address":"124.121.132.126"},
+{"id":6,"first_name":"Novelia","last_name":"Keal","email":"nkeal5@uol.com.br","gender":"Female","ip_address":"131.71.83.88"},
+{"id":7,"first_name":"Ginnifer","last_name":"Keady","email":"gkeady6@shutterfly.com","gender":"Female","ip_address":"193.114.79.92"},
+{"id":8,"first_name":"Shaylah","last_name":"Phizaclea","email":"sphizaclea7@bing.com","gender":"Bigender","ip_address":"176.193.169.43"},
+{"id":9,"first_name":"Kiley","last_name":"Estable","email":"kestable8@ft.com","gender":"Male","ip_address":"199.114.75.92"},
+{"id":10,"first_name":"Agnes","last_name":"Jehan","email":"ajehan9@cbslocal.com","gender":"Female","ip_address":"228.117.240.231"},
+{"id":11,"first_name":"Marita","last_name":"Thireau","email":"mthireaua@earthlink.net","gender":"Female","ip_address":"153.19.135.231"},
+{"id":12,"first_name":"Vilma","last_name":"Jeffress","email":"vjeffressb@illinois.edu","gender":"Female","ip_address":"148.231.93.249"},
+{"id":13,"first_name":"Jewelle","last_name":"Driuzzi","email":"jdriuzzic@miitbeian.gov.cn","gender":"Female","ip_address":"196.94.169.17"},
+{"id":14,"first_name":"Morey","last_name":"Minor","email":"mminord@ebay.com","gender":"Male","ip_address":"81.235.114.12"},
+{"id":15,"first_name":"Melody","last_name":"Clail","email":"mclaile@clickbank.net","gender":"Female","ip_address":"153.145.208.241"},
+{"id":16,"first_name":"Wenonah","last_name":"Danielli","email":"wdaniellif@sun.com","gender":"Female","ip_address":"100.195.110.11"},
+{"id":17,"first_name":"Foster","last_name":"Dalby","email":"fdalbyg@rakuten.co.jp","gender":"Male","ip_address":"206.47.63.71"},
+{"id":18,"first_name":"Seamus","last_name":"Gervaise","email":"sgervaiseh@stanford.edu","gender":"Male","ip_address":"193.110.216.4"},
+{"id":19,"first_name":"Booth","last_name":"Bridgwater","email":"bbridgwateri@samsung.com","gender":"Male","ip_address":"122.186.241.132"},
+{"id":20,"first_name":"Roarke","last_name":"Rallinshaw","email":"rrallinshawj@nature.com","gender":"Male","ip_address":"212.17.161.221"},
+{"id":21,"first_name":"Aylmar","last_name":"Hindes","email":"ahindesk@dot.gov","gender":"Male","ip_address":"37.60.127.164"},
+{"id":22,"first_name":"Burnard","last_name":"Dobson","email":"bdobsonl@51.la","gender":"Male","ip_address":"217.240.147.102"},
+{"id":23,"first_name":"Ellissa","last_name":"Pascow","email":"epascowm@princeton.edu","gender":"Female","ip_address":"85.141.140.238"},
+{"id":24,"first_name":"Trev","last_name":"Aberhart","email":"taberhartn@hostgator.com","gender":"Polygender","ip_address":"18.128.90.153"},
+{"id":25,"first_name":"Morganne","last_name":"Murcott","email":"mmurcotto@jiathis.com","gender":"Female","ip_address":"226.177.234.197"},
+{"id":26,"first_name":"Angy","last_name":"Gartenfeld","email":"agartenfeldp@nsw.gov.au","gender":"Female","ip_address":"131.176.193.67"},
+{"id":27,"first_name":"Clarita","last_name":"Pyzer","email":"cpyzerq@elpais.com","gender":"Female","ip_address":"53.106.113.226"},
+{"id":28,"first_name":"Myrvyn","last_name":"Shimman","email":"mshimmanr@ycombinator.com","gender":"Male","ip_address":"194.93.213.181"},
+{"id":29,"first_name":"Meredith","last_name":"Fowells","email":"mfowellss@mtv.com","gender":"Female","ip_address":"236.19.109.153"},
+{"id":30,"first_name":"Josee","last_name":"Castagna","email":"jcastagnat@slashdot.org","gender":"Female","ip_address":"48.164.206.104"},
+{"id":31,"first_name":"Uta","last_name":"Bulfoot","email":"ubulfootu@ezinearticles.com","gender":"Female","ip_address":"94.16.77.189"},
+{"id":32,"first_name":"Prescott","last_name":"Bjerkan","email":"pbjerkanv@usa.gov","gender":"Male","ip_address":"73.223.142.4"},
+{"id":33,"first_name":"Anatollo","last_name":"Garwell","email":"agarwellw@gravatar.com","gender":"Genderfluid","ip_address":"203.186.175.177"},
+{"id":34,"first_name":"Wright","last_name":"Smoote","email":"wsmootex@state.gov","gender":"Bigender","ip_address":"135.173.149.55"},
+{"id":35,"first_name":"Dyann","last_name":"Antrag","email":"dantragy@sogou.com","gender":"Female","ip_address":"227.35.225.115"},
+{"id":36,"first_name":"Sandi","last_name":"Zipsell","email":"szipsellz@hp.com","gender":"Female","ip_address":"128.82.241.37"},
+{"id":37,"first_name":"Malachi","last_name":"Deares","email":"mdeares10@parallels.com","gender":"Bigender","ip_address":"5.102.59.65"},
+{"id":38,"first_name":"Jessamine","last_name":"Mechic","email":"jmechic11@qq.com","gender":"Bigender","ip_address":"67.141.190.252"},
+{"id":39,"first_name":"Serene","last_name":"Cleaton","email":"scleaton12@ocn.ne.jp","gender":"Female","ip_address":"173.242.71.210"},
+{"id":40,"first_name":"Herta","last_name":"Lackney","email":"hlackney13@vk.com","gender":"Female","ip_address":"166.80.91.157"},
+{"id":41,"first_name":"Camel","last_name":"Valencia","email":"cvalencia14@goodreads.com","gender":"Polygender","ip_address":"115.242.131.45"},
+{"id":42,"first_name":"Linn","last_name":"Lyfield","email":"llyfield15@blogger.com","gender":"Female","ip_address":"75.180.85.37"},
+{"id":43,"first_name":"Adrien","last_name":"Trowler","email":"atrowler16@biblegateway.com","gender":"Male","ip_address":"156.96.151.201"},
+{"id":44,"first_name":"Logan","last_name":"Brodnecke","email":"lbrodnecke17@nifty.com","gender":"Male","ip_address":"169.144.4.79"},
+{"id":45,"first_name":"Glynis","last_name":"Tosney","email":"gtosney18@nature.com","gender":"Female","ip_address":"188.61.234.4"},
+{"id":46,"first_name":"Albina","last_name":"Magner","email":"amagner19@tinypic.com","gender":"Female","ip_address":"157.110.161.65"},
+{"id":47,"first_name":"Jonathon","last_name":"Paskins","email":"jpaskins1a@slideshare.net","gender":"Male","ip_address":"247.207.226.126"},
+{"id":48,"first_name":"Brigham","last_name":"Jennaway","email":"bjennaway1b@fema.gov","gender":"Male","ip_address":"149.249.118.93"},
+{"id":49,"first_name":"Vittorio","last_name":"Moxson","email":"vmoxson1c@cornell.edu","gender":"Male","ip_address":"137.245.12.213"},
+{"id":50,"first_name":"Dora","last_name":"Jaume","email":"djaume1d@163.com","gender":"Female","ip_address":"52.90.29.99"}]
+
+// <td>1</td>
+//     <td>John</td>
+//     <td>Doe</td>
+//     <td>jond@dxc.com</td>
+//     <td>Male</td>
+
+const tBody = $('#tbody')
+const searchInput = $('#searchInput')
+
+
+
+function onInputHandler(e){
+ console.log(e.target.value)
+ filterTable(e.target.value)
+}
+
+searchInput.on('keyup', onInputHandler)
+
+
+function createTableRow(studentObject){
+    const tr = $('<tr>')
+        
+        const RollNo = $('<td>')
+            RollNo.text(studentObject.id)
+        
+        const firstName = $('<td>')
+            firstName.text(studentObject.first_name)
+        
+        const lastName = $('<td>')
+            lastName.text(studentObject.last_name)
+        
+        const email = $('<td>')
+            email.text(studentObject.email)
+        
+        const gender = $('<td>')
+            gender.text(studentObject.gender)
+        
+        tr.append(RollNo,firstName,lastName,email,gender)
+
+        return tr;
+}
+
+function filterTable(searchKey){
+    if(searchKey.length >= 3 ){
+        tBody.text('')
+
+for(let j=0; j< studentLists.length; j++){
+    let currentRecord = studentLists[j]
+      
+// if(searchKey.toLowerCase() == currentRecord.first_name.toLowerCase()){
+// const tr = createTableRow(currentRecord)
+//     tBody.append(tr)
+// }
+
+if(searchKey == currentRecord.id){
+const tr = createTableRow(currentRecord)
+    tBody.append(tr)
+}
+if(currentRecord.first_name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()) ||currentRecord.last_name.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()) ||currentRecord.email.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase()) || currentRecord.gender.toLocaleLowerCase().includes(searchKey.toLocaleLowerCase())){
+
+const tr = createTableRow(currentRecord)
+    tBody.append(tr)
+}
+}
+}
+else if(searchKey.length == 0) {
+    tBody.text('')
+    for(let counter=0; counter<studentLists.length;counter++){
+        
+const currentRecord = studentLists[counter]
+const tr= createTableRow(currentRecord)
+tBody.append(tr)
+}
+}
+}
+
+
+
+// for(let counter=0; counter<studentLists.length;counter++){
+// const currentRecord = studentLists[counter]
+// const tr= createTableRow(currentRecord)
+// tBody.append(tr)
+// }
+
+let startingValue = 0
+let pageNumber = 1
+let pageSize = 10
+
+function onClickHandler(){
+  
+
+       const tBody = $('#tbody')
+       
+ for(let counter=startingValue; counter< pageSize*pageNumber;counter ++){
+   
+
+var button= document.getElementById('btn')
+button.innerHTML = `Page no. ${pageNumber}`
+    
+
+const currentRecord = studentLists[counter]
+
+const tr = $('<tr>')
+        
+        const RollNo = $('<td>')
+            RollNo.text(currentRecord.id)
+        
+        const firstName = $('<td>')
+            firstName.text(currentRecord.first_name)
+        
+        const lastName = $('<td>')
+            lastName.text(currentRecord.last_name)
+        
+        const email = $('<td>')
+            email.text(currentRecord.email)
+        
+        const gender = $('<td>')
+            gender.text(currentRecord.gender)
+        
+        tr.append(RollNo,firstName,lastName,email,gender)
+   tBody.append(tr)
+
+
+
+}
+pageNumber++
+startingValue+=10
+
+   console.log(startingValue)
+
+
+}
+
+
+$('#btn').on('click',onClickHandler)
+ $('#btn').text('PageNo. 1')
+
+
+//digpal project logic
+// let startingvalue = 0;
+//     let pagesize = 10;
+//     let pagenumber = 1;
+
+// function rendertable(startingvalue, pagenumber) {
+//         for (let i = startingvalue; i < pagesize * pagenumber; i++) {
+//             const currentRecord = studentLists[i];
+//             const tr = createTableRow(currentRecord);
+//             tBody.append(tr);
+//         }
+//     }
+//     rendertable(startingvalue, pagenumber);
+    
+
+
+//     function onclickbutton(e) {
+//                   pagenumber = e.target.textContent
+//             startingvalue = (pagesize * pagenumber) - 10
+//             rendertable(startingvalue, pagenumber);
+//     }
+    
+//     // pagination handler
+//     $('#buttons').on('click', onclickbutton);
+
+//TODO = load more feature in table and load data in bunch of 10 items, Create a Pagination
+
+
+
+
+</script>
+</body>
+</html>
